@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EV Charging Station</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>EV Charging Station</h1>
+  <p>Charging State : <strong> %STATE%</strong></p>
+  <p>
+    <a href="/on"><button class="button">ON</button></a>
+    <a href="/off"><button class="button button2">OFF</button></a>
+  </p>
+
+  <p><strong>
+    <span>Voltage :</span>
+    <span id = "Volts" >%Volts%</span> V
+  </strong></p>
+
+  <p><strong>
+    <span>Power :</span>
+    <span id = "Power" >%Power%</span> W
+  </strong></p>
+
+  <p><strong>
+    <span>Charged Time :</span>
+    <span id = "Time" >%Time%</span> Min
+  </strong></p>
+
+  <p><strong>
+    <span>Energy Used :</span>
+    <span id = "Energy" >%Energy%</span> Wh
+  </strong></p>
+
+</body>
+
+<script>
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("Volts").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/Volts", true);
+    xhttp.send();
+  }, 1000 ) ;
+  
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("Power").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/Power", true);
+    xhttp.send();
+  }, 1000 ) ;
+
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("Time").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/Time", true);
+    xhttp.send();
+  }, 1000 ) ;
+
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("Energy").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/Energy", true);
+    xhttp.send();
+  }, 1000 ) ;
+
+</script>
+</html>
